@@ -2,12 +2,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
+    margin: 50px;
     padding: 0;
-    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     outline-style: none;
   }
@@ -109,35 +107,3 @@ body {
     cursor: pointer;
     border-radius: 4px;
   }
-
-  .form-list {
-    display: flex;
-    gap: 20px;
-  }
-  .form-list * {
-    display: flex;
-    gap: 0px;
-  }
-  
-  /* 반응형 디자인 */
-  @media (max-width: 600px) {
-    .join-wrap {
-      padding: 15px;
-    }
-  
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="file"],
-    textarea,
-    select {
-      width: calc(100% - 18px);
-    }
-  
-    .hobbies-container {
-      flex-direction: column;
-    }
-  }
-  
