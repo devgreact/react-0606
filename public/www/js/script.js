@@ -1,36 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // user.json 파일을 불러오는 함수
+$(document).ready(function() {
   const loadJson = () => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', './api/user.json', true);
-
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        try {
-          const data = JSON.parse(xhr.responseText);
-          userInfo(data); // JSON 데이터를 화면에 표시하는 함수 호출
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-        }
-      } else {
-        console.error('Network response was not ok ' + xhr.statusText);
+    $.ajax({
+      url: './api/user.json',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        userInfo(data); // JSON 데이터를 화면에 표시하는 함수 호출
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error('There has been a problem with your fetch operation:', textStatus, errorThrown);
       }
-    };
+    });
+  };
 
-    xhr.onerror = () => {
-      console.error('There has been a problem with your fetch operation:', xhr.statusText);
-    };
+  const joinName = $(".join-name");
+  const joinEmail = $(".join-email");
 
-    xhr.send();
+  const userInfo = ({username, email}) => {
+    joinName.val(username);
+    joinEmail.val(email);
   };
 
   loadJson();
-  
-  const joinName = document.querySelector(".join-name");
-  const joinEmail = document.querySelector(".join-email");
-  
-  const userInfo = ({username, email}) => {
-    joinName.value = username;
-    joinEmail.value = email;
-  };
 });

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
   </head>
   <body>
@@ -30,12 +31,10 @@
     </div>
   </body>
 </html>
-
-
 ```
 ## 2. js
 ```js
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
   
 });
 ```
@@ -49,213 +48,29 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 ## 4. js
 ```js
-document.addEventListener('DOMContentLoaded', function() {
-   fetch('./api/user.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data); // JSON 데이터를 콘솔에 출력
-        // JSON 데이터를 화면에 표시하는 함수 호출
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-});
-```
-```js
-document.addEventListener('DOMContentLoaded', function() {
-   fetch('./api/user.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data); // JSON 데이터를 콘솔에 출력
-        // JSON 데이터를 화면에 표시하는 함수 호출
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-});
-```
-```js
-document.addEventListener('DOMContentLoaded', function() {
-  // user.json 파일을 불러오는 함수
-  function loadJson(){
-    fetch('./api/user.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data); // JSON 데이터를 콘솔에 출력
-        // JSON 데이터를 화면에 표시하는 함수 호출
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-  }
-
-  loadJson();
-  
-});
-```
-```js
-document.addEventListener('DOMContentLoaded', function() {
-  // user.json 파일을 불러오는 비동기 함수
-  async function loadJson() {
-    try {
-        const response = await fetch('./api/user.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const data = await response.json();
-        console.log(data); // JSON 데이터를 콘솔에 출력
-        // JSON 데이터를 화면에 표시하는 함수 호출
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-  }
-
-  loadJson();
-});
-```
-```js
-document.addEventListener('DOMContentLoaded', () => {
-  // user.json 파일을 불러오는 비동기 화살표 함수
-  const loadJson = async () => {
-    try {
-        const response = await fetch('./api/user.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const data = await response.json();
-        console.log(data); // JSON 데이터를 콘솔에 출력
-        // JSON 데이터를 화면에 표시하는 함수 호출
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-  }
-
-  loadJson();
-});
-```
-```js
-document.addEventListener('DOMContentLoaded', () => {
-  // user.json 파일을 불러오는 비동기 화살표 함수
-  const loadJson = async () => {
-    try {
-        const response = await fetch('./api/user.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const data = await response.json();
-        console.log(data); // JSON 데이터를 콘솔에 출력
-
-        // JSON 데이터를 화면에 표시하는 함수 호출        
-        const joinName = document.querySelector(".join-name");
-        const joinEmail = document.querySelector(".join-email");
-        joinName.value = data.username;
-        joinEmail.value = data.email;
-
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-  }
-  loadJson();
-});
-```
-```js
-document.addEventListener('DOMContentLoaded', () => {
-  // user.json 파일을 불러오는 비동기 화살표 함수
-  const loadJson = async () => {
-    try {
-        const response = await fetch('./api/user.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const data = await response.json();
-        console.log(data); // JSON 데이터를 콘솔에 출력
-
-        // JSON 데이터를 화면에 표시하는 함수 호출   
-
-        // const joinName = document.querySelector(".join-name");
-        // const joinEmail = document.querySelector(".join-email");
-        // joinName.value = data.username;
-        // joinEmail.value = data.email;
-
-        userInfo(data)
-
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-  }
-  loadJson();
-  
-  const joinName = document.querySelector(".join-name");
-  const joinEmail = document.querySelector(".join-email");
-  
-  // 아래로 하셔도 됩니다만, 
-  /*
-  const userInfo = (data) => {
-    joinName.value = data.username;
-    joinEmail.value = data.useremail;
-  }
-  */
-
-  // 아래를 추천
-  const userInfo = ( {username, email} ) => {
-    joinName.value = username;
-    joinEmail.value = email;
-  }
-
-});
-```
-
-- 참고 (XHR) 샘플
-```js
-document.addEventListener('DOMContentLoaded', () => {
-  // user.json 파일을 불러오는 함수
+$(document).ready(function() {
   const loadJson = () => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', './api/user.json', true);
-
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        try {
-          const data = JSON.parse(xhr.responseText);
-          userInfo(data); // JSON 데이터를 화면에 표시하는 함수 호출
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-        }
-      } else {
-        console.error('Network response was not ok ' + xhr.statusText);
+    $.ajax({
+      url: './api/user.json',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        userInfo(data); // JSON 데이터를 화면에 표시하는 함수 호출
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error('There has been a problem with your fetch operation:', textStatus, errorThrown);
       }
-    };
+    });
+  };
 
-    xhr.onerror = () => {
-      console.error('There has been a problem with your fetch operation:', xhr.statusText);
-    };
+  const joinName = $(".join-name");
+  const joinEmail = $(".join-email");
 
-    xhr.send();
+  const userInfo = ({username, email}) => {
+    joinName.val(username);
+    joinEmail.val(email);
   };
 
   loadJson();
-  
-  const joinName = document.querySelector(".join-name");
-  const joinEmail = document.querySelector(".join-email");
-  
-  const userInfo = ({username, email}) => {
-    joinName.value = username;
-    joinEmail.value = email;
-  };
 });
 ```
