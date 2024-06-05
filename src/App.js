@@ -1,7 +1,8 @@
 import "./App.css";
+import Index from "./pages/Index";
 
 function App() {
-  return <>안녕하세요.</>;
+  return <Index></Index>;
 }
 
 export default App;
