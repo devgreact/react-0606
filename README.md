@@ -1,332 +1,268 @@
-# 작업순서 기준
+# Vanila JS
 
-## 1. 웹서비스 개발 순서(프론트)
+## 1. Syntax
 
-- 퍼블리싱부터 진행
-- 리액트 진행(필요시)
-- 타입스크립트 진행(필요시)
-- Next.js 진행(필요시)
+- Syntax (구문) : 약속된 문법
 
-## 2. 퍼블리싱 해보기
+- Interpreter (번역) : 갤럭시 AI/웹브라우저
 
-- 생성된 폴더 최상위를 `Root` 라고 부른다.
-- 코드상으로는 `/` 로 표현합니다.
-- 퍼블리싱은 `/public` 폴더에 `www` 폴더 생성후 진행
-- 퍼블리싱 기본 폴더 생성 진행
-  : images 폴더 생성(.png, .jpg, .gif, .svg )
-  : css 폴더 생성 (.css 파일들을 보관)
-  : js 폴더 생성 (.js 파일들을 보관)
-  : assets 폴더 생성(문서, 동영상, 디자인원본(.psd)..)
-  : index.html 파일 생성
+- 프로그래밍은 요구사항을 분석하고, (개인별로 작성 : 의사코드 )
+   Syntax 를 이용해서
+   적절한 자료구조 + 적절한 함수를 활용하고,
+   흐름을 제어하여 요구사항을 만족 시킨다.
 
-## 3. index.html 기본구성
+## 2. Syntax 코드 위치
 
-- `! 누르면서 Tab 키를 선택`하면 html 기본형이 제공된다. (스냅샷기능)
-- lang="en" 은 "ko" 로 수정한다.
-- 최소 title 은 변경한다.
-- 미리보기 (html 파일에서 마우스 오른쪽 Open Width Live Server 선택)
+- inline 방식
 
 ```html
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입</title>
-  </head>
-  <body></body>
-</html>
+<div class="wrap" onclick="alert('안녕');"></div>
 ```
 
-## 4. html 문서 작업 순서
-
-- 디자인 레이아웃 보기
-- https://chromewebstore.google.com/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl
-  : 디자인 파일은 /public/www/assets 폴더에 보관
-- html 의 태그의 활용 이전에 꼭 체크 해 보자.
-  : https://caniuse.com/ 의심가면 확인해 보자.
-- 디자인을 살펴보고 영역을 구분하는 작업 진행
-  : 레이아웃을 위한 영역 구분 (div 태그)
-
-  ```html
-  <!DOCTYPE html>
-  <html lang="ko">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>회원가입</title>
-    </head>
-    <body>
-      <!-- 전체 레이아웃 -->
-      <div class="wrap">
-        <!-- 상단 레이아웃 -->
-        <div class="header"></div>
-        <!-- 메인 레이아웃 -->
-        <div class="main"></div>
-        <!-- 하단 레이아웃 -->
-        <div class="footer"></div>
-      </div>
-    </body>
-  </html>
-  ```
-
-  : 내용별 배치 영역(시멘틱 태그 활용 추천)
-  : 태그가 내용을 설명하는 역할을 시멘틱
-
-  ```html
-  <!DOCTYPE html>
-  <html lang="ko">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>회원가입</title>
-    </head>
-    <body>
-      <!-- 전체 레이아웃 -->
-      <div class="wrap">
-        <!-- 상단 레이아웃 -->
-        <header class="header"></header>
-        <!-- 메인 레이아웃 -->
-        <main class="main"></main>
-        <!-- 하단 레이아웃 -->
-        <footer class="footer"></footer>
-      </div>
-    </body>
-  </html>
-  ```
-
-- 참고사항
-  : camelCase(카멜케이스)
-  : PscalCase(파스칼케이스)
-  : snake_case(스네이크케이스)
-
-- div 구조를 이용해서 뼈대를 잘만드는 것이 실력
-  : <div class="wrap">내용</div> 무조건 기본
+- 태그 방식
 
 ```html
-<!DOCTYPE html>
+<script>
+  alert("반가워");
+</script>
+```
+
+- 외부파일 방식
+
+```html
+<script src="./js/script.js">
+  alert("반가워"); // 실행안됨
+</script>
+```
+```js
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+  </head>
+```
+## 3. script DOM 체크
+
+```js
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM fully loaded and parsed');
+  // DOM 조작 작업
+});
+
+window.addEventListener('load', function() {
+  console.log('Page fully loaded');
+  // 모든 리소스가 로드된 후 작업
+});
+```
+## 4. 이벤트 핸들러 방식
+```js
+function handleClick() {
+  alert('Button clicked!');
+}
+<button onclick="handleClick()">Click me</button>
+```
+```js
+const button = document.getElementById('myButton');
+button.onclick = function() {
+  alert('Button clicked!');
+};
+```
+```js
+const button = document.getElementById('myButton');
+button.addEventListener('click', function() {
+  alert('Button clicked!');
+});
+```
+
+## 5. 선택자
+```js
+// DOM 찾아서 변수로 레퍼런스 하기
+const tags = document.querySelector(".클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 추가
+tags.classList.add("클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 제거
+tags.classList.remove("클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 추가 / 제거
+tags.classList.toggle("클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 포함여부
+tags.classList.contain("클래스명");
+```
+## 6. 응용
+### 6.1. sample
+- 필수 요소 값(required)
+```html
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
   </head>
   <body>
-    <!-- 전체 레이아웃 -->
-    <div class="wrap">
-      <!-- 상단 레이아웃 -->
-      <header class="header">
-        <!-- 상단 로고 -->
-        <div class="header-logo"></div>
-        <!-- 상단 메뉴 -->
-        <div class="header-navi"></div>
-      </header>
-      <!-- 메인 레이아웃 -->
-      <main class="main">
-        <!-- 메인 상단 -->
-        <div class="main-top">
-          <!-- 슬라이드 -->
-          <div class="main-top-slide"></div>
-          <!-- 타이틀 배너 -->
-          <div class="main-top-banner"></div>
+    <h1>입력양식(Form)</h1>
+    <h2>회원가입</h2>
+    <div class="join-wrap">
+      <form action="/member/join.php" method="get" enctype="multipart/form-data" id="joinform">
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" class="name" required/>
         </div>
-        <!-- 메인 하단 -->
-        <div class="main-bottom">
-          <!-- 메인 리스트 영역 -->
-          <div class="main-bottom-list">
-            <!-- 새글 리스트 -->
-            <div class="main-bottom-list-news"></div>
-            <!-- 배너 -->
-            <div class="main-bottom-list-banner"></div>
-            <!-- 추천글 리스트 -->
-            <div class="main-bottom-list-picks"></div>
-          </div>
-          <!-- 메인 카드 영역 -->
-          <div class="main-bottom-cards">
-            <!-- 카드 슬라이드 -->
-            <div class="main-bottom-cards-slide"></div>
-          </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" class="email" required/>
         </div>
-      </main>
-      <!-- 하단 레이아웃 -->
-      <footer class="footer">
-        <!-- 하단 사이트 정보 및 사이트 맵 -->
-        <div class="footer-top">
-          <!-- 회사소개 -->
-          <div class="footer-top-info"></div>
-          <!-- 사이트맵 -->
-          <div class="footer-top-sitemap"></div>
+        <div class="form-group">
+          <label for="pw">비밀번호</label>
+          <input type="password" id="pw" name="pw" class="pw" required/>
         </div>
-        <!-- 하단 카피라이터 및 SNS 링크 -->
-        <div class="footer-bottom">
-          <!-- 카피라이터 -->
-          <div class="footer-bottom-copyright"></div>
-          <!-- SNS 목록 -->
-          <div class="footer-bottom-sns"></div>
+        <div class="form-group">
+          <label for="pwcheck">비밀번호확인</label>
+          <input type="password" id="pwcheck" name="pwcheck" class="pwcheck" required/>
         </div>
-      </footer>
+        <div class="form-group">
+          <label for="phone">전화번호</label>
+          <input type="tel" id="phone" name="phone" class="phone" required/>
+        </div>
+        <div class="form-group">
+          <label for="address">주소</label>
+          <input type="text" id="address" name="address" class="address" required/>
+        </div>
+        <div class="form-group">
+          <label for="address2">상세주소</label>
+          <input type="text" id="address2" name="address2" class="address2" />
+        </div>
+        <div class="form-group">
+          <label for="birthday">생년월일</label>
+          <input type="date" id="birthday" name="birthday" class="birthday" required/>
+        </div>
+        <div class="form-group">
+          <label for="gender">성별</label>
+          <select id="gender" name="gender" class="gender" required>
+            <option value="">선택하세요.</option>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+            <option value="other">기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="hobbies">취미</label>
+            <div class="form-list">
+                <div>
+                    <input type="checkbox" id="hobby1" name="hobbies" value="reading" />
+                    <label for="hobby1">독서</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="hobby2" name="hobbies" value="traveling" />
+                    <label for="hobby2">여행</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="hobby3" name="hobbies" value="cooking" />
+                    <label for="hobby3">요리</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="hobby4" name="hobbies" value="sports" />
+                    <label for="hobby4">운동</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>학생 여부</label>
+            <div class="form-list">
+                <div>
+                    <input type="radio" id="student_yes" name="student" value="yes" required/>
+                    <label for="student_yes">예</label>
+                </div>
+                <div>
+                    <input type="radio" id="student_no" name="student" value="no" required />
+                    <label for="student_no">아니오</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="profile_image">프로필 이미지</label>
+          <input type="file" id="profile_image" name="profile_image" class="profile_image" />
+        </div>
+        <div class="form-group">
+          <label for="memo">메모 남기기</label>
+          <textarea id="memo" name="memo" class="memo" rows="4" cols="50"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="확인" />
+          <button type="submit">submit 확인</button>
+          <button type="button">button type 확인</button>
+          <button>그냥 버튼 확인</button>
+          <button type="reset" class="clearbt">재작성</button>
+        </div>
+      </form>
     </div>
   </body>
 </html>
+
 ```
-# CSS 기초
+```js
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('joinform');
 
-- html 은 화면에 보여줄 데이터(글자) 입니다.
-- css 는 화면에 보여줄 데이터를 보기 좋게 꾸며주는 역할을 합니다.
+    form.addEventListener('submit', function(event) {
+      const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+      let allFieldsFilled = true;
+      requiredFields.forEach(function(field) {
+        if (!field.value) {
+          allFieldsFilled = false;
+          console.log(`${field.name} 필드가 비어 있습니다.`);
+          field.style.border = '2px solid red'; // 경고를 위해 테두리 빨간색으로 변경
+        } else {
+          field.style.border = ''; // 테두리 초기화
+          console.log(`${field.name} 필드의 값: ${field.value}`);
+        }
+      });
+  
+      if (!allFieldsFilled) {
+        alert('모든 필수 필드를 채워주세요.');
+        event.preventDefault(); // 폼 제출 방지
+        return false;
+      }
 
-## 1. css 작성법 (4가지)
+  
+      const pw = document.getElementById('pw').value;
+      const pwcheck = document.getElementById('pwcheck').value;
+      
+      if (pw !== pwcheck) {
+        alert('비밀번호가 일치하지 않습니다.');
+        event.preventDefault(); // 폼 제출 방지
+        return false;
+      }
 
-### 1.1. 인라인 방식 : html 직접 적용
+      // JSON 객체 생성
+      const formData = new FormData(form);
+      const jsonData = {};
+      formData.forEach((value, key) => {
+        if (jsonData[key]) {
+          if (Array.isArray(jsonData[key])) {
+            jsonData[key].push(value);
+          } else {
+            jsonData[key] = [jsonData[key], value];
+          }
+        } else {
+          jsonData[key] = value;
+        }
+      });
+      
+      console.log(JSON.stringify(jsonData));
 
-- <태그 style="이름 : 값">
-- 가독성이 떨어져요.
-- css 코드를 재활용하는 것이 불가능.
-
-```html
-<body style="background: hotpink"></body>
+      event.preventDefault(); // 폼 제출 방지
+    });
+  
+    document.querySelector('.clearbt').addEventListener('click', function() {
+      form.reset();
+      const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+      requiredFields.forEach(function(field) {
+        field.style.border = ''; // 테두리 초기화
+      });
+    });
+  });
 ```
-
-### 1.2. `<style>` 태그 활용하기
-
-- 가독성은 좋아요.
-- css 코드 재활용은 어렵습니다.
-- 선택자 { css 적용 }
-- css Selector { css 적용}
-
-```html
-<style>
-  body {
-    background: hotpink;
-  }
-</style>
-```
-
-### 1.3. 외부파일로 css 분리하기
-
-- 가독성 좋아요.
-- 재활용 좋아요.
-- 일반적으로 활용해요. (무조건 추천)
-- 예) css/common.css (확장자는 무조건 파일명.css)
-
-```html
-<link rel="stylesheet" href="./css/common.css" />
-```
-
-### 1.4. css 에 css 파일 불러들여서 관리하기
-
-- 대표적으로 글꼴을 @import 해서 사용
-
-```css
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
-body {
-  background: green;
-}
-```
-
-- 참고사항
-  : 프로그래밍 언어는 문장의 끝을 표현한다.
-  : `;` 으로
-
-## 2. css 초기화 하기
-
-### 2.1. 선택을 하자. (코딩 컨벤션)
-
-- https://necolas.github.io/normalize.css/8.0.1/normalize.css
-- https://meyerweb.com/eric/tools/css/reset/reset.css
-- 우리가 만든 common.css 도 링크하자.
-  : 꼭 기억하자. `box-sizing: border-box`
-  : 필요시 기억하자. `outline-style: none;`
-- 정말 중요한 것은 css 코드 배치 순서
-  : html 태그 > .class > #id의 순서로 적용됨.
-  : 만약 같은 종류라면 작성 순서 기준
-  : 가장 우선시 한다면 `!important`
-
-```css
-@charset "utf-8";
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  /* 옵션 */
-  /* outline-style: none; */
-}
-html {
-  font-size: 16px;
-}
-body {
-  color: #000000;
-}
-.wrap {
-  width: 1170px;
-}
-```
-
-## 3. css 로 전체 레이아웃에 적용해 보기
-
-### 3.1. 멘토 및 실무자는 반드시 반응형을 봅니다.
-
-- 화면(디바이스) 너비 관례상 기준
-  : 기본 화면(1280px 이상)을 먼저 작업한다.
-
-  ```css
-  .wrap {
-    width: 95%;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  ```
-
-  : 랜탑 화면(1024px) 화면의 레이아웃을 작업한다.
-
-  ```css
-  @media screen and (max-width: 1024px) {
-  }
-  ```
-
-  : 타블렛 화면(960px) 화면의 레이아웃을 작업한다.
-
-  ```css
-  @media screen and (max-width: 960px) {
-  }
-  ```
-
-  : 고해상도 모바일 화면(760px) 화면의 레이아웃을 작업한다.
-
-  ```css
-  @media screen and (max-width: 760px) {
-  }
-  ```
-
-  : 중해상도 모바일 화면(480px) 화면의 레이아웃을 작업한다.
-
-  ```css
-  @media screen and (max-width: 480px) {
-  }
-  ```
-
-  : 저해상도 모바일 화면(320px) 화면의 레이아웃을 작업한다.
-
-  ```css
-  @media screen and (max-width: 320px) {
-  }
-  ```
-
-  : 완성된 예
-
-  ```css
-  .wrap {
-    width: 95%;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  @media screen and (max-width: 1024px) {
-  }
-  @media screen and (max-width: 960px) {
-  }
-  @media screen and (max-width: 760px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
-  @media screen and (max-width: 320px) {
-  }
-  ```

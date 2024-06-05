@@ -5,35 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
   </head>
   <body>
     <h1>입력양식(Form)</h1>
     <h2>회원가입</h2>
     <div class="join-wrap">
-      <form action="/member/join.php" method="get" enctype="multipart/form-data">
+      <form action="/member/join.php" method="get" enctype="multipart/form-data" id="joinform">
         <div class="form-group">
           <label for="name">이름</label>
-          <input type="text" id="name" name="name" class="name" />
+          <input type="text" id="name" name="name" class="name" required/>
         </div>
         <div class="form-group">
           <label for="email">이메일</label>
-          <input type="email" id="email" name="email" class="email" />
+          <input type="email" id="email" name="email" class="email" required/>
         </div>
         <div class="form-group">
           <label for="pw">비밀번호</label>
-          <input type="password" id="pw" name="pw" class="pw" />
+          <input type="password" id="pw" name="pw" class="pw" required/>
         </div>
         <div class="form-group">
           <label for="pwcheck">비밀번호확인</label>
-          <input type="password" id="pwcheck" name="pwcheck" class="pwcheck" />
+          <input type="password" id="pwcheck" name="pwcheck" class="pwcheck" required/>
         </div>
         <div class="form-group">
           <label for="phone">전화번호</label>
-          <input type="tel" id="phone" name="phone" class="phone" />
+          <input type="tel" id="phone" name="phone" class="phone" required/>
         </div>
         <div class="form-group">
           <label for="address">주소</label>
-          <input type="text" id="address" name="address" class="address" />
+          <input type="text" id="address" name="address" class="address" required/>
         </div>
         <div class="form-group">
           <label for="address2">상세주소</label>
@@ -41,11 +42,11 @@
         </div>
         <div class="form-group">
           <label for="birthday">생년월일</label>
-          <input type="date" id="birthday" name="birthday" class="birthday" />
+          <input type="date" id="birthday" name="birthday" class="birthday" required/>
         </div>
         <div class="form-group">
           <label for="gender">성별</label>
-          <select id="gender" name="gender" class="gender">
+          <select id="gender" name="gender" class="gender" required>
             <option value="">선택하세요.</option>
             <option value="male">남성</option>
             <option value="female">여성</option>
@@ -77,11 +78,11 @@
             <label>학생 여부</label>
             <div class="form-list">
                 <div>
-                    <input type="radio" id="student_yes" name="student" value="yes" />
+                    <input type="radio" id="student_yes" name="student" value="yes" required/>
                     <label for="student_yes">예</label>
                 </div>
                 <div>
-                    <input type="radio" id="student_no" name="student" value="no" />
+                    <input type="radio" id="student_no" name="student" value="no" required />
                     <label for="student_no">아니오</label>
                 </div>
             </div>
@@ -99,6 +100,7 @@
           <button type="submit">submit 확인</button>
           <button type="button">button type 확인</button>
           <button>그냥 버튼 확인</button>
+          <button type="reset" class="clearbt">재작성</button>
         </div>
       </form>
     </div>
